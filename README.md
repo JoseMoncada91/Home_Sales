@@ -61,7 +61,25 @@ Partitioning with other columns: We experimented with partitioning by other non-
 
 Reviewed PySpark and Spark versions: We checked the compatibility of PySpark and the underlying Spark version. The issue appeared to be related to partitioning on nullable columns in some versions of Spark.
 
-Conclusion
-Unfortunately, we were unable to resolve the issue with partitioning by the date_built field. The error seems to be related to partitioning on nullable columns, and more research is needed to identify a definitive solution. In the meantime, we were able to proceed with other tasks in the script that did not require partitioning by date_built.
+Laptop Setup Steps:
 
+In order to run PySpark on Windows, several environment variables and permissions were adjusted to allow proper execution:
+
+Set environment variables for Spark and Hadoop:
+
+Added the SPARK_HOME variable to point to the location of Spark on the machine.
+Set the HADOOP_HOME variable to the folder containing Hadoop binaries to ensure proper interaction between Spark and Hadoop.
+Added Spark to the system PATH:
+
+Appended the bin folder within SPARK_HOME to the system PATH variable, so that commands such as spark-submit are recognized in the command prompt.
+Allowed full access to winutils.exe:
+
+The script failed initially due to permission issues with the winutils.exe file, which is necessary for Hadoop to run on Windows.
+We navigated to the winutils.exe file in the Hadoop bin folder and changed its file permissions to "Allow" full control for the user to ensure Spark could run without permission errors.
+Ensured the Java environment is correctly set up:
+
+Set the JAVA_HOME environment variable to the path of the JDK installation, ensuring that Spark could utilize the correct version of Java for its operations.
+Conclusion:
+
+Unfortunately, we were unable to resolve the issue with partitioning by the date_built field. The error seems to be related to partitioning on nullable columns, and more research is needed to identify a definitive solution. In the meantime, we were able to proceed with other tasks in the script that did not require partitioning by date_built.
 
